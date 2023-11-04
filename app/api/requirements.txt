@@ -1,0 +1,12 @@
+fastapi
+pydantic
+uvicorn
+asyncpg
+sqlalchemy
+pytest
+alembic
+pydantic-settings
+fastapi_users
+fastapi-users[sqlalchemy]
+asyncio
+sqlalchemy-utils

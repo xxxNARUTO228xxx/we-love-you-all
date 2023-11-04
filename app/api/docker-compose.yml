@@ -1,0 +1,48 @@
+version: '3.7'
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres:14
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+      - ./dbdump:/dbdump/
+    ports:
+      - '5432:5432'
+
+
+  api_garbage_analyzer:
+    container_name: api
+    image: api_garbage_analyzer:latest
+
+    build:
+      context: ..
+      dockerfile: api/Dockerfile
+
+    volumes:
+      - ./:/code
+    command: bash -c 'python /code/main.py'
+    ports:
+      - '8000:8888'
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
+    depends_on:
+      - postgres
+
+    env_file:
+      - .env
+    environment:
+      - PYTHON=/code:/base
+      - PROJECT_DIRECTORY=./api/
+      - URL=/api
+
+volumes:
+  postgresql_data:
