@@ -1,0 +1,2 @@
+ImageID,Source,ClassName,Confidence,XMin,XMax,YMin,YMax,IsOccluded,IsTruncated,IsGroupOf,IsDepiction,IsInside
+Cam1-From09-23-00To10-03-25_Segment_0_x264_frame_74,Unknown,Short_rifle,1,1010.2479338842976,1038.01652892562,140.78335373317012,167.22154222766218,-1,0,-1,-1,-1
