@@ -2,6 +2,7 @@ import os
 import shutil
 import zipfile
 from pathlib import Path
+from glob import glob
 from dotenv import find_dotenv
 import xml.etree.ElementTree as ET
 
@@ -40,6 +41,14 @@ def move_files(source_dir, target_dir):
 
     for file_name in file_names:
         shutil.move(os.path.join(source_dir, file_name), target_dir)
+
+
+def move_files_by_extension(source_dir, extension, target_dir):
+    search_files_mask = os.path.join(source_dir, f"*{extension}")
+    file_names = glob(search_files_mask)
+
+    for file_name in file_names:
+        shutil.move(file_name, target_dir)
 
 
 def chdir_to_projects_root():
