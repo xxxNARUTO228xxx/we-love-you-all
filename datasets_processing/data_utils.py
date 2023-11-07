@@ -3,6 +3,7 @@ import shutil
 import zipfile
 from pathlib import Path
 from dotenv import find_dotenv
+import xml.etree.ElementTree as ET
 
 
 def create_yolov8_yaml(path_for_yaml, class_dct, test_subset=True):
@@ -14,7 +15,7 @@ def create_yolov8_yaml(path_for_yaml, class_dct, test_subset=True):
     yaml_file.extend(["", "", "names:"])
 
     for key in class_dct:
-        yaml_file.append(f"{key}: {class_dct[key]}")
+        yaml_file.append(f"  {key}: {class_dct[key]}")
 
     # Writing to file
     write_file(path_for_yaml, yaml_file)
@@ -49,3 +50,39 @@ def chdir_to_projects_root():
 def unzip_arhive(path_to_zip_file, directory_to_extract_to):
     with zipfile.ZipFile(path_to_zip_file, "r") as zip_ref:
         zip_ref.extractall(directory_to_extract_to)
+
+
+def get_data_from_pascal_voc_xml(xml_path):
+    root = ET.parse(xml_path).getroot()
+    filename = root.find("filename").text
+    width = float(root.find("size").find("width").text)
+    height = float(root.find("size").find("height").text)
+
+    bboxs, labels = [], []
+    for obj in root.findall("object"):
+        xmin = float(obj.find("bndbox").find("xmin").text)
+        ymin = float(obj.find("bndbox").find("ymin").text)
+        xmax = float(obj.find("bndbox").find("xmax").text)
+        ymax = float(obj.find("bndbox").find("ymax").text)
+        label = str(obj.find("name").text)
+
+        xc = (xmin + xmax) / 2 / width
+        yc = float(ymin + ymax) / 2 / height
+        w = (xmax - xmin) / width
+        h = (ymax - ymin) / height
+
+        bboxs.append((xc, yc, w, h))
+        labels.append(label)
+
+    return bboxs, labels
+
+
+def get_label_from_pascal_voc_xml(xml_path):
+    root = ET.parse(xml_path).getroot()
+
+    labels = []
+    for obj in root.findall("object"):
+        label = str(obj.find("name").text)
+        labels.append(label)
+
+    return labels
