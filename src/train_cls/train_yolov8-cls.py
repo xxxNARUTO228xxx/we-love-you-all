@@ -4,4 +4,4 @@ from ultralytics import YOLO
 model = YOLO('yolov8x-cls.pt')  # load a pretrained model (recommended for training)
 
 # Train the model
-results = model.train(data='data_clf', epochs=200, imgsz=64)
+results = model.train(data='data_clf_split', epochs=200, imgsz=64)
