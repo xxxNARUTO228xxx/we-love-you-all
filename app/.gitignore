@@ -1,0 +1,52 @@
+# WEB
+
+web/frontend/dist
+web/frontend/.quasar
+web/keys
+_BAK_*
+_DEL_*
+NOTES.md
+dev
+log
+
+
+# python and tools  #
+#####################
+__pycache__
+**/*__pycache__
+.mypy_cache
+env*
+.venv
+.ipynb_checkpoints
+.coverage
+requirements/target
+*.py[cod]
+*.pyc
+
+
+# node              #
+#####################
+node_modules
+
+
+# IDE                #
+######################
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+~$*

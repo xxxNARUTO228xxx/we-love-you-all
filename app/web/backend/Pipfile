@@ -1,0 +1,37 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sqlalchemy = "*"
+fastapi = "*"
+python-dotenv = "*"
+psycopg2-binary = "*"
+boto3 = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+aiokafka = "*"
+torch= "==2.0.0"
+torchvision= "==0.15.1"
+torchaudio= "==2.0.1"
+pydantic = "==1.10.9"
+python-multipart = "*"
+rarfile = "*"
+ultralytics = "*"
+numpy = "*"
+opencv-python-headless = "*"
+
+[dev-packages]
+ipykernel = "*"
+pyclean = "*"
+mypy = "*"
+mypy-extensions = "*"
+pydocstyle = "*"
+bandit = "*"
+flake8 = "*"
+flake8-coding = "*"
+types-waitress = "*"
+types-pyyaml = "*"
+
+[requires]
+python_version = "3.10"
