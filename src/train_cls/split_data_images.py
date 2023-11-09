@@ -1,7 +1,7 @@
 import splitfolders
 
 
-input_folder = "data_clf/train"
+input_folder = "data_clf"
 
 splitfolders.ratio(
     input_folder,
