@@ -7,3 +7,10 @@
 /train.zip
 /train/
 /notebooks/train/
+
+# ignore data
+data_clf
+*.zip
+
+# ignore models
+runs
