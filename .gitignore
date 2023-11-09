@@ -10,7 +10,10 @@
 
 # ignore data
 data_clf
+data_clf_split
 *.zip
 
 # ignore models
 runs
+notebooks/lightning_logs
+*.pt
