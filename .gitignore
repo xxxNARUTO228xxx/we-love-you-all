@@ -10,3 +10,6 @@
 
 #ignore datasets folder
 /datasets_processing/data
+/data_clf
+
+/runs
