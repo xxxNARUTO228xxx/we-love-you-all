@@ -11,6 +11,7 @@
 # ignore data
 data_clf
 data_clf_split
+data/mini
 *.zip
 
 # ignore models
