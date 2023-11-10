@@ -8,6 +8,12 @@
 /train/
 /notebooks/train/
 
+#ignore datasets folder
+/datasets_processing/data
+/data_clf
+
+/runs
+
 # ignore data
 data_clf
 data_clf_split
