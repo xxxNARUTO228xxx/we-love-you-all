@@ -42,6 +42,12 @@
                                             <span v-if="index < image.class.length - 1">, </span>
                                         </template>
                                     </q-item-label>
+                                    <q-item-label caption >
+                                        <template v-for="(word, index) in image.poses" :key="index">
+                                            <span>{{ word }}</span>
+                                            <span v-if="index < image.poses.length - 1">, </span>
+                                        </template>
+                                    </q-item-label>
                                 </q-item-section>
                             </q-item>
                             <img @click="showDialog(image)" :src="'data:image/jpeg;base64,' + image.img">
@@ -162,11 +168,6 @@ export default defineComponent({
             }
         },
     },
-    watch: {
-        progress(newV){
-            console.log('!!!', newV)
-        }
-    }
 })
 
 </script>

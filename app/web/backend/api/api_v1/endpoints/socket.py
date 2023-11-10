@@ -23,17 +23,8 @@ loop = asyncio.get_event_loop()
 
 
 async def consume(cm: WSConnectionManager):
-    """
-    Отправк кадров с rtsp потока
-
-    Args:
-        cm (WSConnectionManager): сокеты.
-    """
-
     log.info('Start websocket connect.')
     log.info('Start consuming')
-    # finally:
-    #     log.error('Stop consuming')
 
 
 @router.on_event("startup")
@@ -61,7 +52,7 @@ async def ws_endpoint(
         while True:
                 data: TWSEventData = await ws.receive_json()
                 if data['event'] == 'echo':
-                    msg = RESULT_FRAME
+                    msg = data
                     await cm.send_message(msg, client_id)
 
     except WebSocketDisconnect:

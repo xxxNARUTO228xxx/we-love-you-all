@@ -19,6 +19,7 @@ env*
 .venv
 .ipynb_checkpoints
 .coverage
+yolo
 requirements/target
 *.py[cod]
 *.pyc

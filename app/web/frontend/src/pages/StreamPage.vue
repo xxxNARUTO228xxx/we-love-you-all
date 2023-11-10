@@ -43,6 +43,12 @@
                                             <span v-if="index < image.class.length - 1">, </span>
                                         </template>
                                     </q-item-label>
+                                    <q-item-label caption >
+                                        <template v-for="(word, index) in image.poses" :key="index">
+                                            <span>{{ word }}</span>
+                                            <span v-if="index < image.poses.length - 1">, </span>
+                                        </template>
+                                    </q-item-label>
                                 </q-item-section>
                             </q-item>
                             <img @click="showDialog(image)" :src="'data:image/jpeg;base64,' + image.img">
@@ -58,11 +64,13 @@
         v-model="showStream"
         auto-close
         transition-duration="300"
+        style="height: 100%; width:100%;"
     >
         <section>
             <img
                 :src="dialogStream"
                 class="dialog-image"
+                style="height: 900px; min-width:1200px;"
                 fit="scale-up"
             >
         </section>
@@ -72,10 +80,12 @@
         v-model="dialog"
         auto-close
         transition-duration="300"
+        style="height: 100%; width:100%;"
     >
         <q-img
             :src="dialogImgSrc"
             class="dialog-image"
+            style="height: 100%; min-width:1200px; padding-bottom: 0;"
             fit="scale-up"
         >
         </q-img>

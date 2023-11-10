@@ -14,13 +14,16 @@ pipenv install
 #Для инференса на GPU, если стоит CUDA 11.7:
 pip install -r requirements.txt
 
-#Если версия CUDA отлична от 11.7, то необходимо изменить зависимости:
+#Если версия CUDA отлична от 11.7, то необходимо изменить зависимости в requirements.txt:
 https://pytorch.org/get-started/previous-versions/
 ```
 ## Модель
 
 Модель для детекции person и weapon
 необходимо переместить в backend/yolo/ с названием "yolovX"
+
+Чтобы добавить классификатор его необходимо поместить в backend/yolo/
+c названием "yolovCLS"
   
 ## Запуск  
 Linux:
