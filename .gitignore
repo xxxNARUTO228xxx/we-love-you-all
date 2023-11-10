@@ -9,7 +9,7 @@
 /notebooks/train/
 
 #ignore datasets folder
-/datasets_processing/data
+/datasets_processing/data/*
 /data_clf
 
 /runs
