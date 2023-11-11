@@ -81,7 +81,7 @@ async def stream_read(query: str = '') -> Any:
 
 @router.get("/get_image")
 async def stream_read(filename: str = '') -> Any:
-    "Api for stop stream"
+    "Api for get image"
     try:
 
         if filename != '':
