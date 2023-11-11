@@ -6,7 +6,7 @@
 
 ## Index page
 
-![Screnshot](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/index.png)
+![Screnshot](/readme_image/index.png)
 
 
 1 - Header с ссылками для навигаци по сервису;  
@@ -14,11 +14,11 @@
 3 - Кнопка отправки архива с видео на обработку веб сервисом;  
 4 - Прогресс бар, который показывает этап обработки видео;  
 5 - Поле заполняемое карточками с результатами работы модели. Каждая карточка имеет имя кадра в формате unix timestamp, названия классов. Каждое изображение можно открыть в диалоговом окне, если нажать на него;  
-6.- Кнопка для скачивания фотографии и разметки в формате yolo. 
+6 - Кнопка для скачивания фотографии и разметки в формате yolo. 
 
 ## rtsp page
 
-![Screnshot](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/rtsp.png)
+![Screnshot](/readme_image/rtsp.png)
 
 1 - Text input для ссылок на rtsp поток;  
 2 - Кнопка отправки ссылки на обработку веб сервисом;  
