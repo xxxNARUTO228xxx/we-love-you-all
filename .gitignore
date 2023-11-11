@@ -7,3 +7,11 @@
 /train.zip
 /train/
 /notebooks/train/
+/notebooks/runs/
+/notebooks/yolo_nas_s.pt
+/notebooks/rtdetr-l.pt
+/notebooks/yolov8m.pt
+/notebooks/rtdetr-x.pt
+/notebooks/yolov8x.pt
+/notebooks/yolov8s.pt
+/notebooks/yolov8n.pt
