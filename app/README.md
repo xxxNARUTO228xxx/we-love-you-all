@@ -6,7 +6,7 @@
 
 ## Index page
 
-![Index Image](/app/readme_image/index.png?raw=true)
+![Index Image](/app/readme_image/index.png)
 
 
 1 - Header с ссылками для навигаци по сервису;  
