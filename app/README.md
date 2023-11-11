@@ -6,7 +6,7 @@
 
 ## Index page
 
-![Image alt](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/index.png)
+![Screnshot](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/index.png)
 
 
 1 - Header с ссылками для навигаци по сервису;  
@@ -18,7 +18,7 @@
 
 ## rtsp page
 
-![Image alt](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/rtsp.png)
+![Screnshot](https://github.com/xxxNARUTO228xxx/we-love-you-all/tree/dev_web/app/readme_image/rtsp.png)
 
 1 - Text input для ссылок на rtsp поток;  
 2 - Кнопка отправки ссылки на обработку веб сервисом;  
