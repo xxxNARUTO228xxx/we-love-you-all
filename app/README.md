@@ -6,7 +6,7 @@
 
 ## Index page
 
-![Screnshot](/readme_image/index.png)
+![Screnshot](app/readme_image/index.png)
 
 
 1 - Header с ссылками для навигаци по сервису;  
@@ -18,7 +18,7 @@
 
 ## rtsp page
 
-![Screnshot](/readme_image/rtsp.png)
+![Screnshot](app/readme_image/rtsp.png)
 
 1 - Text input для ссылок на rtsp поток;  
 2 - Кнопка отправки ссылки на обработку веб сервисом;  
