@@ -21,7 +21,9 @@ https://pytorch.org/get-started/previous-versions/
 
 Модели доступны по ссылке:
 
-
+```
+https://disk.yandex.ru/d/IXNEekqbN7P01Q
+```
 
 Модель для детекции person и weapon
 необходимо переместить в backend/yolo/ с названием "yolovX"
