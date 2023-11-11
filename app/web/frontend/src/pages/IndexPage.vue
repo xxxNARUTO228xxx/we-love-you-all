@@ -33,8 +33,8 @@
                                 />
                         </q-inner-loading>
                         <q-card class="my-card" v-for="image in images" :key="image.filename">
-                            <q-item>
-                                <q-item-section class="big_window" style="min-height: 120px; align-items: flex-start">
+                            <q-item class="title_section">
+                                <q-item-section>
                                     <q-item-label class="card-title">
                                         {{ image.filename }}
                                         <button class="edit_button" @click="downloadImageInfo(image)">
