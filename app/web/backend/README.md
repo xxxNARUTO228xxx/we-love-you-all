@@ -19,13 +19,17 @@ https://pytorch.org/get-started/previous-versions/
 ```
 ## Модель
 
+Модели доступны по ссылке:
+
+
+
 Модель для детекции person и weapon
 необходимо переместить в backend/yolo/ с названием "yolovX"
 
 Чтобы добавить классификатор его необходимо поместить в backend/yolo/
 c названием "yolovCLS"
-  
-## Запуск  
+
+## Запуск
 Linux:
 ```bash
 sh ./scripts/run.sh

@@ -14,6 +14,7 @@ export const useModelStore = defineStore('model', {
         stream_status: false,
         images: [],
         video_images: [],
+        download_url: '',
         client_id: createUID()
     }),
 
@@ -34,6 +35,24 @@ export const useModelStore = defineStore('model', {
                 mainStore.errorMessage = error.message
                 return error
             }
+        },
+        async downloadImage(filename){
+            const mainStore = useMainStore()
+            try {
+                const data = await fetch(`${API_ROOT}/model/get_image?filename=${filename}`, {
+                    method: 'GET',
+                });
+                const imgBlob = await data.blob();
+                const imageUrl = URL.createObjectURL(imgBlob);
+                mainStore.errorMessage = '';
+                return imageUrl
+            } catch (error) {
+                console.log('ERROR', error);
+                console.dir(error)
+                mainStore.errorMessage = error.message
+                return error
+            }
+
         },
         async sendURL(RtspUrl){
             console.log(RtspUrl)
@@ -72,9 +91,9 @@ export const useModelStore = defineStore('model', {
                   });
                 mainStore.errorMessage = '';
                 if (resp.ok) {
-                    const data = await resp.json();
-                    const result = data.result;
-                    // this.images = result
+                    const videoBlob = await resp.blob();
+                    const videoUrl = URL.createObjectURL(videoBlob);
+                    this.download_url = videoUrl
                     this.progress = 1
                     this.load_progress = false
                 }
@@ -108,13 +127,11 @@ export const useModelStore = defineStore('model', {
                 }
                 if (event == 'video_weapon'){
                     let frame_video = data
-                    console.log(frame_video)
                     this.loading = false;
                     this.images.push(frame_video)
                 }
                 if (event == 'progress'){
                     let progress_value = data
-                    console.log(progress_value['progress'])
                     this.progress = progress_value['progress']
                 }
                 if (event == "reload") {

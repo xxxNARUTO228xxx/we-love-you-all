@@ -35,7 +35,12 @@
                         <q-card class="my-card" v-for="image in images" :key="image.filename">
                             <q-item>
                                 <q-item-section>
-                                    <q-item-label class="card-title">{{ image.filename }}</q-item-label>
+                                    <q-item-label class="card-title">
+                                        {{ image.filename }}
+                                        <button class="edit_button" @click="downloadImageInfo(image)">
+                                            <img src="icons/Edit.svg" alt="SVG Icon" />
+                                        </button>
+                                    </q-item-label>
                                     <q-item-label caption >
                                         <template v-for="(word, index) in image.class" :key="index">
                                             <span :class="getClass(word)">{{ word }}</span>
@@ -93,11 +98,12 @@ export default defineComponent({
     setup() {
         const store = useModelStore();
         const mainStore = useMainStore();
-        const {images, loading, load_progress, progress} = storeToRefs(store)
+        const {images, loading, load_progress, progress, download_url} = storeToRefs(store)
         let selectedFile = ref(null)
         let dialog = ref(false)
         let file_status = ref('Файл не выбран')
         return {
+            download_url,
             progress,
             load_progress,
             file_status,
@@ -116,6 +122,29 @@ export default defineComponent({
         this.store.startConsuming()
     },
     methods: {
+        async downloadImageInfo(imageData){
+            let image_url = await this.store.downloadImage(imageData.filename);
+            const textContent = imageData.bboxes.join('\n');
+
+            let blob = new Blob([textContent], { type: "text/plain" });
+            let aImage = document.createElement("a");
+            let a = document.createElement("a");
+            let url = window.URL.createObjectURL(blob);
+            aImage.href = image_url
+            aImage.download = imageData.filename;
+            a.href = url;
+            let name = imageData.filename.slice(0, -4)
+            a.download = `${name}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.appendChild(aImage);
+            aImage.click();
+
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            document.body.removeChild(aImage);
+
+        },
         getClass(word) {
             return word === "person" ? "green-text" : word === "weapon" ? "red-text" : "";
         },
@@ -165,6 +194,19 @@ export default defineComponent({
                 } else {
                     this.store.getData(this.selectedFile);
                 }
+            }
+        },
+    },
+    watch: {
+        download_url(newV){
+            if (newV != ''){
+                console.log('watch', newV)
+                const a = document.createElement('a');
+                a.href = newV;
+                a.download = 'video.mp4';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             }
         },
     },
