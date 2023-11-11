@@ -103,14 +103,14 @@ https://pytorch.org/get-started/previous-versions/
 Модели доступны по ссылке:
 
 ```
-https://disk.yandex.ru/d/IXNEekqbN7P01Q
+https://disk.yandex.ru/d/dqrtyRSWnRrF4Q
 ```
 
 Модель для детекции `person` и `weapon`
-необходимо переместить в `backend/yolo/` с названием `yolovX`
+необходимо переместить в `backend/yolo/` с названием `yolovX.pt`
 
 Чтобы добавить классификатор его необходимо поместить в `backend/yolo/`
-c названием `yolovCLS`
+c названием `yolovCLS.pt`
 
 ## Запуск
 
