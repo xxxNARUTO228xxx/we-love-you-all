@@ -127,6 +127,7 @@ export const useModelStore = defineStore('model', {
                 }
                 if (event == 'video_weapon'){
                     let frame_video = data
+                    console.log("!",frame_video)
                     this.loading = false;
                     this.images.push(frame_video)
                 }

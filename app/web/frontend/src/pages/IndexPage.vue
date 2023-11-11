@@ -34,11 +34,11 @@
                         </q-inner-loading>
                         <q-card class="my-card" v-for="image in images" :key="image.filename">
                             <q-item>
-                                <q-item-section>
+                                <q-item-section class="big_window" style="min-height: 120px; align-items: flex-start">
                                     <q-item-label class="card-title">
                                         {{ image.filename }}
                                         <button class="edit_button" @click="downloadImageInfo(image)">
-                                            <img src="icons/Edit.svg" alt="SVG Icon" />
+                                            <img src="icons/edit.svg" alt="SVG Icon" />
                                         </button>
                                     </q-item-label>
                                     <q-item-label caption >
