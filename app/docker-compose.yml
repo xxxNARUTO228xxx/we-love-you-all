@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  findgun:
+    container_name: findgun
+    image: #docker.hub
+    env_file: .env
+    ports:
+      - 3060:3000
