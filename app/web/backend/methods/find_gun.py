@@ -11,7 +11,6 @@ from api.api_v1.endpoints.socket import cm
 from core.ws_con_manager import TWSEventData
 
 
-
 async def video_analyze(filename):
     result_list = []
     script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -68,16 +67,20 @@ async def video_analyze(filename):
                                     base_conf = probs[0]
                                     if shooter_conf > base_conf:
                                         poses.append(names_cls[1])
-                                        cv.putText(frame_with_boxes, f'{text}, {names_cls[1]}', (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                                        cv.putText(frame_with_boxes, f'{text}, {names_cls[1]}', (x1, y1 - 10),
+                                                   cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                                     elif shooter_conf < base_conf:
                                         poses.append(names_cls[0])
-                                        cv.putText(frame_with_boxes, f'{text}, {names_cls[0]}', (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                                        cv.putText(frame_with_boxes, f'{text}, {names_cls[0]}', (x1, y1 - 10),
+                                                   cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
                             else:
-                                cv.putText(frame_with_boxes, text, (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+                                cv.putText(frame_with_boxes, text, (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5,
+                                           (0, 255, 0), 2)
                         else:
                             cv.rectangle(frame_with_boxes, (x1, y1), (x2, y2), (0, 0, 255), 2)
                             text = f'{detect_names[class_name]}'
-                            cv.putText(frame_with_boxes, text, (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 2)
+                            cv.putText(frame_with_boxes, text, (x1, y1 - 10), cv.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255),
+                                       2)
                     current_datetime = datetime.now()
                     timestamp = time.mktime(current_datetime.timetuple()) + current_datetime.microsecond / 1e6
                     _, buffer = cv.imencode('.jpg', frame_with_boxes)
@@ -85,17 +88,36 @@ async def video_analyze(filename):
                     classes = [detect_names[class_name] for class_name in classes]
                     if 'weapon' in classes:
                         ws_msg: TWSEventData = {
-                                'event': 'video_weapon',
-                                'data': {'img': encoded_frame,'filename': f'{timestamp}.jpg', 'class': classes, 'poses': poses, 'bboxes': bboxes},
+                            'event': 'video_weapon',
+                            'data': {'img': encoded_frame, 'filename': f'{timestamp}.jpg', 'class': classes,
+                                     'poses': poses, 'bboxes': bboxes},
                         }
                         save_result_path = os.path.join(result_out_directory, f'{timestamp}.jpg')
                         cv.imwrite(save_result_path, frame)
                         await cm.broadcast(ws_msg)
                 ws_msg: TWSEventData = {
-                                'event': 'progress',
-                                'data': {'progress': processed},
-                        }
+                    'event': 'progress',
+                    'data': {'progress': processed},
+                }
                 await cm.broadcast(ws_msg)
                 out.write(frame_with_boxes)
+    except Exception as e:
+        print(e)
+
+
+async def image_analyze(filename):
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    # video_out_directory = os.path.join(script_directory, '..', 'video', 'output_video.mp4')
+    result_out_directory = os.path.join(script_directory, '..', 'result')
+    os.makedirs(result_out_directory, exist_ok=True)
+
+    path_detect_model = os.path.join(script_directory, '..', 'yolo', 'yolovX.pt')
+
+    model_detect = YOLO(path_detect_model)
+    current_frame = 0
+    try:
+        results = model_detect(filename, conf=0.3, iou=0.5, device="0", verbose=False)
+        boxes_xyxyn = results[0].boxes.xyxyn.cpu().numpy()
+        return boxes_xyxyn
     except Exception as e:
         print(e)

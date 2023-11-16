@@ -6,22 +6,22 @@
                 <text class="logo-text">FindGun</text>
             </a>
             <div class='input-container'>
-                <a class="site-link link-header archive current-link"  :href="getAttUrl() + '/'">Работа с архивом</a>
+                <a class="site-link link-header archive current-link"  :href="getAttUrl() + '/'">Работа с видео</a>
                 <a class="site-link link-header rtsp" :href="getAttUrl() + '/rtsp'">Работа с RTSP</a>
             </div>
         </header>
         <main class="main-page">
             <h1 class="visually-hidden">Веб-сервис для поиска оружия на видео</h1>
             <section class="upload">
-                <h2 class="page-title">Загрузите архив с видео для поиска оружия (zip)</h2>
-                <p class="page-subtitle">Формат видео должен быть .mp4, .wmv, .avi</p>
+                <h2 class="page-title">Загрузите видео для поиска оружия</h2>
+                <p class="page-subtitle">Формат видео должен быть .mp4</p>
                 <div class="upload-file__wrapper">
                     <label class="custom-file-input-label" for="file">Выберите файл</label>
                     <input class='upload-input' type="file" id="file" ref="file" style="display: none;" v-on:change="handleFileUpload()"/>
                     <p class="file-status">{{ file_status }}</p>
                     <div class="upload-button__container container-button">
                         <q-linear-progress stripe color='dark' size="10px" :value="progress"  style="width: 300px;"/>
-                        <button class="site-button send-button arhive-button" @click="uploadFile">Отправить архив</button>
+                        <button class="site-button send-button arhive-button" @click="uploadFile">Отправить видео</button>
                     </div>
                 </div>
                 <div class="image_board__wrapper">
@@ -118,7 +118,7 @@ export default defineComponent({
         }
     },
     created() {
-        document.title = 'FindGun | Архив';
+        document.title = 'FindGun | Видео';
         this.store.startConsuming()
     },
     methods: {
@@ -182,10 +182,10 @@ export default defineComponent({
                     })
             } else {
                 let file_format = this.selectedFile['name'].slice(-3);
-                if (file_format !== 'zip'){
+                if (file_format !== 'mp4'){
                     this.selectedFile = null
                     this.$q.notify({
-                        message: `Файл должен быть формата .zip !`,
+                        message: `Файл должен быть формата .mp4 !`,
                         type: 'negative',
                         color: 'negative',
                         position: 'center',
